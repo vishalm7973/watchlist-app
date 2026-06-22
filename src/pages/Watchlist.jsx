@@ -24,6 +24,9 @@ const Watchlist = () => {
     return true;
   });
 
+  const watchedCount = watchlist.filter(movie => movie.watched).length;
+  const unwatchedCount = watchlist.filter(movie => !movie.watched).length;
+
   if (!dataIsLoaded) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -42,7 +45,7 @@ const Watchlist = () => {
             }`}
           onClick={() => setFilter("all")}
         >
-          All
+          All ({watchedCount + unwatchedCount})
         </button>
 
         <button
@@ -52,7 +55,7 @@ const Watchlist = () => {
             }`}
           onClick={() => setFilter("watched")}
         >
-          Watched
+          Watched ({watchedCount})
         </button>
 
         <button
@@ -62,7 +65,7 @@ const Watchlist = () => {
             }`}
           onClick={() => setFilter("unwatched")}
         >
-          Unwatched
+          Unwatched ({unwatchedCount})
         </button>
       </div>
 
